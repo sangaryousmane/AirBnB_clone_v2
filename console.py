@@ -123,7 +123,7 @@ class HBNBCommand(cmd.Cmd):
         if class_name not in HBNBCommand.classes:
             print("** class doesn't exist **")
             return
-        params = ' '.join(args_list[1:]).split(',')
+        params = (args_list[1:])
         kwargs = {}
         for param in params:
             key_value = param.strip().split('=')
