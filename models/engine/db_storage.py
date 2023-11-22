@@ -12,6 +12,7 @@ from sqlalchemy import MetaData, create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 import os
 
+
 class DBStorage:
     """Database base storage class"""
     __engine = None
@@ -36,21 +37,23 @@ class DBStorage:
             self.__engine = create_engine(db_url, pool_pre_ping=True)
 
     def all(self, cls=None):
-        """Query a database based class"""
-        all_objects = {}
-        if cls is not None:
-            query_result = self.__session.query(cls).all()
+        """Query on the current database session"""
+        result = {}
+        
+        if cls is None:
+            classes_to_query = [State, City]
+            for class_obj in classes_to_query:
+                query_result = self.__session.query(class_obj).all()
+                for obj in query_result:
+                    key = f"{obj.__class__.__name__}.{obj.id}"
+                    result[key] = obj
         else:
-            classes_to_query = [BaseModel, User, State, City, Amenity, Place, Review]
-            query_result = []
-            for model_class in classes_to_query:
-                query_result.extend(self.__session.query(model_class).all())
+            query_result = self.__session.query(cls).all()
+            for obj in query_result:
+                key = f"{obj.__class__.__name__}.{obj.id}"
+                result[key] = obj
 
-        for obj in query_result:
-            key = "{}.{}".format(obj.__class__.__name__, obj.id)
-            all_objects[key] = obj
-
-        return all_objects
+        return result
 
     def new(self, obj):
         """Add a new instance to the database"""
@@ -71,3 +74,4 @@ class DBStorage:
 
         Session = scoped_session(sessionmaker(bind=self.__engine, expire_on_commit=False))
         self.__session = Session()
+
