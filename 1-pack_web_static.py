@@ -18,4 +18,4 @@ def do_pack():
     tar_file = local(complete)
     if tar_file.failed:
         return None
-    return file
+    return path_file
