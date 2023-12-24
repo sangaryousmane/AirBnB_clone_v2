@@ -41,7 +41,7 @@ def display_python(text):
 def display_number(n):
     """ Display number only if
     """
-    if type(n) is int:
+    if type(n) === int:
         return f"{n} is a number"
 
 
