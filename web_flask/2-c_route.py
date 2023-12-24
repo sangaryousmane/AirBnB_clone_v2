@@ -24,7 +24,8 @@ def display_hbnb():
 def display_c_with_text(text):
     """ display with text
     """
-    return f'C {text.replace('_',' ')}'
+    remove_underscore = text.replace("_", " ")
+    return f'C {remove_underscore}'
 
 
 if __name__ == '__main__':
