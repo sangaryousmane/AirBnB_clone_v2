@@ -24,7 +24,7 @@ def display_hbnb():
 def display_c_with_text(text):
     """ display with text
     """
-    return f 'C {text.replace('_',' ')}'
+    return f'C {text.replace('_',' ')}'
 
 
 if __name__ == '__main__':
