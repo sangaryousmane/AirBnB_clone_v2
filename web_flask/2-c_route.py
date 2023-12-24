@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Using flask framework 2
 """
+
 from flask import Flask
 app = Flask(__name__)
 
@@ -17,6 +18,13 @@ def display_hbnb():
     """ Display HBNB
     """
     return "HBNB"
+
+
+@app.route("/c/<text>", strict_slashes=False)
+def display_c_with_text(text):
+    """ display with text
+    """
+    return f 'C {text.replace('_',' ')}'
 
 
 if __name__ == '__main__':
