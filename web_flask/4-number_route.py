@@ -28,8 +28,9 @@ def display_c_with_text(text):
     return f'C {remove_underscore}'
 
 
+@app.route('/python/', defaults={'text': 'is_cool'})
 @app.route("/python/<text>", strict_slashes=False)
-def display_python(text="is cool"):
+def display_python(text):
     """ Display Python
     """
     msg = text.replace("_", " ")
