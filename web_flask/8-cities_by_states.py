@@ -5,6 +5,7 @@
 from flask import Flask, render_template
 from models import storage
 from model.state import State
+from model.city import City
 
 app = Flask(__name__)
 
@@ -77,5 +78,13 @@ def display_states():
     return render_template("7-states_list.html", states=states.values())
 
 
+@app.route("/cities_by_states", strict_slashes=False)
+def display_cities_with_states():
+    """ Display cities with state
+    """
+    states = storage.all('State').order_by(State.name).all()
+    cities = states.
+
+
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0', port=5000)
