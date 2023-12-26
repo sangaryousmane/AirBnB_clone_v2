@@ -63,10 +63,11 @@ def display_odd_or_even(n):
 
 @app.teardown_appcontext
 def close_session(exception=None):
-     """Closes the SQLAlchemy Session after each request."""
-     storage.close()
+    """Closes the SQLAlchemy Session after each request.
+    """
+    storage.close()
 
-     
+
 @app.route("/states_list", strict_slashes=False)
 def display_states():
     """ Display states from db
