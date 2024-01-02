@@ -73,7 +73,7 @@ def close_session(exception=None):
 def display_states():
     """ Display states from db
     """
-    states = storage.all('State').order_by(State.name).all()
+    states = storage.all('State')
     return render_template("7-states_list.html", states=states.values())
 
 
