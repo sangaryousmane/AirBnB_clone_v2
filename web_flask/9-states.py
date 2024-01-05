@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+""" Handle state list and display a template
+"""
 
 from flask import Flask
 from models import storage
@@ -6,9 +8,12 @@ from models.state import State
 
 app = Flask('__name__')
 
+
 @app.teardown_appcontext
 def refresh(exception):
-        models.storage.close()
+    """ Do a refresh on the storage
+    """
+    models.storage.close()
 
 
 @app.route("/states", strict_slashes=False)
