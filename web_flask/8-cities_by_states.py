@@ -82,7 +82,7 @@ def display_states():
 def display_cities_with_states():
     """ Display cities with state
     """
-    states = storage.all('State').order_by(State.name).all()
+    states = storage.all('State')
     return render_template("8-cities_by_states.html", states=states.values())
 
 
